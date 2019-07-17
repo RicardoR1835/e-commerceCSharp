@@ -1,0 +1,38 @@
+﻿@using e_Commerce.Models;
+<div class="container">
+    <br>
+    <br>
+    <div class="row imgs d-flex justify-content-around">
+        @foreach(var prod in ViewBag.Products)
+        {
+            <div style="width:20%; display: inline-block">
+                <img class="img" src="@prod.ImageUrl" alt="@prod.Description">
+                <br>
+                <p>@prod.Name</p>
+                <br>
+                <p>(@prod.Quantity left)</p>
+            </div>
+        }
+    </div>
+    <div class="display text-center">
+        <p style="text-decoration: underline;"><b>Recent Orders</b></p>
+        <br>
+        @foreach(var order in ViewBag.Orders)
+        {
+            <p class="text-center">@order.CustomerOrdering.Name Purchased @order.AmountOrdered  @order.ProductOrdered.Name ...(@order.CreatedAt)</p>
+        }
+        <br>
+        <a class="text-right" href="/orders">Show All Orders</a>
+    </div>
+    <div class="display text-center">
+        <p style="text-decoration: underline;"><b>New Customers</b></p>
+        <br>
+        @foreach(var cust in ViewBag.Customers)
+        {
+            <p class="text-center">@cust.Name joined the store (@cust.CreatedAt)</p>
+            <br>
+        }
+        <br>
+        <a class="text-right" href="/customers">Show All Orders</a>
+    </div>
+</div>

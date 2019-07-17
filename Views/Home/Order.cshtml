@@ -1,0 +1,59 @@
+@model e_Commerce.Models.Order;
+<br>
+<br>
+<br>
+<p style="text-decoration: underline;"><b>Add a New Order</b></p>
+<form action="/create/order" method="post">
+    <label>Customer</label>
+    <select style="color: black;" name="CustomerId">
+        @foreach (var item in ViewBag.Customers)
+        {
+            
+            <option style="color: black;" value="@item.CustomerId">@item.Name</option>
+        }
+    </select>
+    <span style="color: red;" asp-validation-for="AmountOrdered"></span>
+    <input style="color: black;" asp-for="AmountOrdered" min="1" type="number">
+    <select style="color: black;" name="ProductId">
+        @foreach (var item in ViewBag.Products)
+        {
+            
+            <option style="color: black;" value="@item.ProductId">@item.Name</option>
+        }
+    </select>
+    <input class="btn btn-primary" type="submit" value="Order">
+</form>
+<br>
+<br>
+<div class="container">
+    
+    <div class="actions">
+        <table class="table">
+            <thead class="thead-light text-center">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    @foreach(var x in ViewBag.Orders)
+                    {
+                        <tr>
+                        <th scope="row">@i</th>
+                        <td>@x.CustomerOrdering.Name</td>
+                        <td>@x.ProductOrdered.Name</td>
+                        <td>@x.AmountOrdered</td>
+                        <td>@x.CreatedAt</td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table> 
+    </div>
+</div>

@@ -1,0 +1,32 @@
+@model e_Commerce.Models.Product;
+<br>
+<div class="row">
+    <div class="col-3 block">
+        <p style="text-decoration: underline;"><b>Add a New Product</b></p>
+        <form action="/create/product" method="post">
+            <input style="color: black;" asp-for="Name" placeholder="Name">
+            <br>
+            <input style="color: black;" asp-for="ImageUrl" placeholder="Image URL">
+            <br>
+            <textarea style="color: black;" asp-for="Description">Description</textarea>
+            <br>
+            <input style="color: black;" asp-for="Quantity" min="1" placeholder="Quantity">
+            <br>
+            <input class="btn btn-primary" type="submit" value="Create">
+        </form>
+    </div>
+    <div class="sp col inline-block">
+        
+        @foreach(var prod in ViewBag.Products)
+        {
+            <div style="width:20%; display: inline-block">
+                <img class="img" src="@prod.ImageUrl" alt="@prod.Description">
+                <br>
+                <p>@prod.Name</p>
+                <br>
+                <p>(@prod.Quantity left)</p>
+            </div>
+        }
+        
+    </div>
+</div>

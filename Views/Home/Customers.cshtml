@@ -1,0 +1,41 @@
+@model e_Commerce.Models.Customer;
+<br>
+<br>
+<br>
+<p style="text-decoration: underline;"><b>Add a New Customer</b></p>
+<form action="/create/customer" method="post">
+    <input asp-for="Name" style="color: black;">
+    <input class="btn btn-primary" type="submit" value="Add">
+</form>
+<br>
+<br>
+<div class="container">
+    
+    <div class="actions">
+        <table class="table">
+    <thead class="thead-light text-center">
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            @foreach(var x in ViewBag.Customers)
+            {
+                <tr>
+                <th scope="row">@i</th>
+                <td>@x.Name</td>
+                <td>@x.CreatedAt</td>
+                <td><a href="/destroy/customer/@x.CustomerId" class="btn btn-danger">Delete</a>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+    </table> 
+    </div>
+</div>
